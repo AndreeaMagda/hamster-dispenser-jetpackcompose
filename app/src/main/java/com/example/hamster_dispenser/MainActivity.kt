@@ -1,5 +1,6 @@
 package com.example.hamster_dispenser
 
+import android.graphics.drawable.Icon
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -11,7 +12,13 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Add
+import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.SegmentedButtonDefaults.Icon
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -42,21 +49,25 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Box(
-        modifier = Modifier
-            .size(400.dp)
-            ){
-    Text(
-        text = "Hello $name!",
-        fontSize = 30.sp,
-        color = Color.Blue,
-        modifier= Modifier.align(Alignment.BottomEnd)
-    )
-    Text(
-        text = "Welcome to your food dispenser",
-        fontSize = 25.sp,
-        color = Color.Red
-    )}
+    LazyColumn(modifier= Modifier.fillMaxSize()) {
+        items(10) { i ->
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = null,
+                modifier= Modifier.size(100.dp)
+            )
+        }
+    }
+
+    LazyRow(modifier= Modifier.fillMaxSize()) {
+        items(10) { i ->
+            Icon(
+                imageVector = Icons.Default.Add,
+                contentDescription = null,
+                modifier= Modifier.size(100.dp)
+            )
+        }
+    }
 }
 
 @Preview(showBackground = true)
