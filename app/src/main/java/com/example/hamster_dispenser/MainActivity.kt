@@ -6,12 +6,15 @@ import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.Button
+import androidx.compose.material3.Divider
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -42,26 +45,39 @@ class MainActivity : ComponentActivity() {
                         .padding(16.dp)
                 )
                 {
-                    Row (
+                    Row(
                         modifier = Modifier.fillMaxWidth()
-                    ){
+                            .padding(30.dp)
+                    ) {
                         OutlinedTextField(
-                            value=name,
-                            onValueChange = {text ->
-                                name=text
-                            }
+                            value = name,
+                            onValueChange = { text ->
+                                name = text
+                            },
+                            modifier = Modifier.weight(1f)
                         )
 
+                        Spacer(modifier = Modifier.width(16.dp),
+                            )
                         Button(onClick = {
-                            if(name.isNotBlank()){
-                            names=names +name}
+                            if (name.isNotBlank()) {
+                                names = names + name
+                                name = ""
+                            }
                         }) {
-                            Text(text="Add")
+                            Text(text = "Add")
                         }
                     }
                     LazyColumn {
-                        items(names){ currentName ->
-                            Text(text = currentName)
+                        items(names) { currentName ->
+                            Text(
+                                text = currentName,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                                    .padding(16.dp)
+                            )
+                            Divider()
+
                         }
                     }
                 }
