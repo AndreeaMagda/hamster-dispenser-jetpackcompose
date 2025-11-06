@@ -27,6 +27,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.hamster_dispenser.ui.theme.HamsterDispenserTheme
+import org.w3c.dom.NameList
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -68,21 +69,28 @@ class MainActivity : ComponentActivity() {
                             Text(text = "Add")
                         }
                     }
-                    LazyColumn {
-                        items(names) { currentName ->
-                            Text(
-                                text = currentName,
-                                modifier = Modifier
-                                    .fillMaxWidth()
-                                    .padding(16.dp)
-                            )
-                            Divider()
-
-                        }
-                    }
+                  NameList(names=names)
                 }
 
             }
         }
     }
+}
+
+@Composable
+fun NameList(
+    names:List<String>,
+    modifier: Modifier= Modifier
+){
+    LazyColumn (modifier){
+        items(names) { currentName ->
+            Text(
+                text = currentName,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp)
+            )
+            Divider()
+
+        }
 }
